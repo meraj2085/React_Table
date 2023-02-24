@@ -20,6 +20,8 @@ const PaginationTable = () => {
     canPreviousPage,
     pageOptions,
     state,
+    gotoPage,
+    pageCount,
   } = useTable({ columns, data }, usePagination);
 
   const { pageIndex } = state;
@@ -54,13 +56,34 @@ const PaginationTable = () => {
       <br />
       <div>
         <div>
-          Page: <strong>{pageIndex + 1}</strong> of <strong>{pageOptions.length}</strong>
+          Page: <strong>{pageIndex + 1}</strong> of{" "}
+          <strong>{pageOptions.length}</strong>
         </div>
+        <div>
+          Go to page:{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const pageNumber = e.target.value
+                ? Number(e.target.value) - 1
+                : 0;
+              gotoPage(pageNumber);
+            }}
+            style={{ width: "50px" }}
+          />
+        </div>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"⏮️"}
+        </button>
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
           {"◀️"}
         </button>
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           {"▶️"}
+        </button>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {"⏩"}
         </button>
       </div>
     </>
