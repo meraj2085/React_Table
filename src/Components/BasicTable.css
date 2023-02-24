@@ -4,8 +4,7 @@ table {
   width: 100%;
 }
 
-table td,
-table th {
+table td, table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -18,10 +17,10 @@ table tr:hover {
   background-color: #ddd;
 }
 
-table th {
+table th, tfoot td {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #04aa6d;
+  background-color: #86A8E7;
   color: white;
 }
